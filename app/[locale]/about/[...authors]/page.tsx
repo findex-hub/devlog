@@ -9,8 +9,6 @@ import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { coreContent } from 'pliny/utils/contentlayer'
 import type { ReactElement } from 'react'
 
-export const runtime = 'edge'
-
 interface PageProps {
   params: Promise<{
     authors: string[]
