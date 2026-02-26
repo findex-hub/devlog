@@ -20,10 +20,6 @@ import { locales, type LocaleTypes } from './i18n/settings'
 
 export const runtime = 'edge'
 
-export async function generateStaticParams(): Promise<{ locale: LocaleTypes }[]> {
-  return locales.map((locale) => ({ locale }))
-}
-
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
