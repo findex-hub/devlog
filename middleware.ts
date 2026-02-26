@@ -2,8 +2,6 @@ import { fallbackLng } from 'app/[locale]/i18n/locales'
 import { locales } from 'app/[locale]/i18n/settings'
 import { NextResponse, type NextRequest } from 'next/server'
 
-export const runtime = 'edge'
-
 export function middleware(request: NextRequest): NextResponse | undefined {
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl
