@@ -126,11 +126,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata 
   }
 }
 
-export const generateStaticParams = async (): Promise<{ slug: string[] }[]> => {
-  const paths = allBlogs.map((p) => ({ slug: p.slug.split('/') }))
-  return paths
-}
-
 export default async function Page({ params }: PageProps): Promise<ReactElement> {
   const { slug, locale } = await params
   const dslug = decodeURI(slug.join('/'))
