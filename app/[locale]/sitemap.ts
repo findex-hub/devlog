@@ -3,6 +3,8 @@ import { allAuthors, allBlogs } from 'contentlayer/generated'
 import type { MetadataRoute } from 'next'
 import { fallbackLng, secondLng } from './i18n/locales'
 
+export const runtime = 'edge'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const { siteUrl } = siteMetadata
   const [today] = new Date().toISOString().split('T')

@@ -5,6 +5,8 @@ import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import type { ReactElement } from 'react'
 import type { LocaleTypes } from './i18n/settings'
 
+export const runtime = 'edge'
+
 interface PageProps {
   params: Promise<{
     locale: LocaleTypes

@@ -14,6 +14,8 @@ import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import { allCoreContent, coreContent, sortPosts } from 'pliny/utils/contentlayer'
 import type { ReactElement } from 'react'
 
+export const runtime = 'edge'
+
 interface PageProps {
   params: Promise<{
     slug: string[]

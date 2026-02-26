@@ -5,6 +5,8 @@ import { createTranslation } from '../i18n/server'
 import type { LocaleTypes } from '../i18n/settings'
 import Project from './project'
 
+export const runtime = 'edge'
+
 interface PageProps {
   params: Promise<{
     locale: LocaleTypes

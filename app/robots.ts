@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 
+export const runtime = 'edge'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {

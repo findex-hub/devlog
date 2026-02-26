@@ -18,6 +18,8 @@ import { Analytics, type AnalyticsConfig } from 'pliny/analytics'
 import type { ReactElement } from 'react'
 import { locales, type LocaleTypes } from './i18n/settings'
 
+export const runtime = 'edge'
+
 export async function generateStaticParams(): Promise<{ locale: LocaleTypes }[]> {
   return locales.map((locale) => ({ locale }))
 }

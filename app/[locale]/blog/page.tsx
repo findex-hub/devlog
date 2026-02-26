@@ -7,6 +7,8 @@ import type { ReactElement } from 'react'
 import { createTranslation } from '../i18n/server'
 import type { LocaleTypes } from '../i18n/settings'
 
+export const runtime = 'edge'
+
 interface PageProps {
   params: Promise<{
     locale: LocaleTypes
