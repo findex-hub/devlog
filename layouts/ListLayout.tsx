@@ -103,20 +103,21 @@ export default function ListLayoutWithTags({
 
   const filteredTags = Object.keys(tagCountMap).map((postTag) => {
     return (
-      <li key={postTag} className="my-3">
+      <li key={postTag} className="my-2">
         <button
           onClick={createTagClickHandler(postTag)}
           aria-labelledby={`${t('poststagged')} ${postTag}`}
+          className="w-full text-left"
         >
           <h3
-            className={`inline cursor-pointer px-3 py-2 text-sm font-medium uppercase ${
+            className={`inline-flex w-full items-center justify-between rounded-2xl px-3 py-3 text-sm font-medium uppercase transition-colors ${
               useTagStore.getState().selectedTag === postTag
-                ? 'text-primary-500'
-                : 'hover:text-primary-500 dark:hover:text-primary-500 text-gray-500 dark:text-gray-300'
+                ? 'bg-primary-50 text-primary-700 dark:bg-primary-500/10 dark:text-primary-300'
+                : 'hover:text-primary-500 dark:hover:text-primary-500 text-gray-500 hover:bg-slate-100 dark:text-gray-300 dark:hover:bg-white/5'
             }`}
           >
-            {' '}
-            {postTag} ({tagCountMap[postTag]})
+            <span>{postTag}</span>
+            <span className="text-xs text-slate-400">{tagCountMap[postTag]}</span>
           </h3>
         </button>
       </li>
@@ -124,25 +125,31 @@ export default function ListLayoutWithTags({
   })
 
   return (
-    <div>
-      <div className="pt-6 pb-6">
-        <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:hidden sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
+    <div className="space-y-8">
+      <div className="pt-6 pb-2">
+        <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-slate-950 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 dark:text-gray-100">
           {title}
         </h1>
+        <p className="mt-3 max-w-2xl text-base leading-7 text-slate-500 dark:text-slate-400">
+          주제별로 탐색하고, 아카이브처럼 쌓인 개발 기록을 빠르게 훑어볼 수 있습니다.
+        </p>
       </div>
-      <div className="flex sm:space-x-24">
-        <div className="hidden h-full max-h-screen max-w-[280px] min-w-[280px] flex-wrap overflow-auto rounded bg-gray-50 pt-5 shadow-md sm:flex dark:bg-gray-900/70 dark:shadow-gray-800/40">
-          <div className="px-6 py-4">
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
+        <div className="surface-card hidden max-h-screen max-w-[300px] min-w-[300px] flex-wrap overflow-auto p-5 lg:flex">
+          <div className="w-full">
+            <p className="px-3 text-xs font-semibold tracking-[0.24em] text-slate-400 uppercase">
+              Topics
+            </p>
             <button
               onClick={handleClearTag}
-              className={`${useTagStore.getState().selectedTag === '' ? 'text-heading-500 dark:text-heading-400' : 'text-gray-500 dark:text-gray-400'} cursor-pointer font-bold uppercase`}
+              className={`${useTagStore.getState().selectedTag === '' ? 'bg-heading-50 text-heading-700 dark:bg-heading-500/10 dark:text-heading-300' : 'text-gray-500 dark:text-gray-400'} mt-4 w-full cursor-pointer rounded-2xl px-3 py-3 text-left text-sm font-bold uppercase transition-colors hover:bg-slate-100 dark:hover:bg-white/5`}
             >
               {t('all')}
             </button>
-            <ul>{filteredTags}</ul>
+            <ul className="mt-2">{filteredTags}</ul>
           </div>
         </div>
-        <div>
+        <div className="min-w-0 flex-1">
           <motion.ul variants={container} initial="hidden" animate="show">
             {displayPosts.map((post) => {
               const slug = post.slug as string
@@ -154,35 +161,39 @@ export default function ListLayoutWithTags({
 
               if (language === locale) {
                 return (
-                  <motion.li variants={item} key={slug} className="py-5">
-                    <article className="flex flex-col space-y-2 xl:space-y-0">
-                      <dl>
+                  <motion.li variants={item} key={slug} className="py-3">
+                    <article className="surface-card flex flex-col gap-5 p-6 sm:p-7">
+                      <dl className="flex items-center gap-3 text-sm">
                         <dt className="sr-only">{t('pub')}</dt>
-                        <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
+                        <dd className="font-medium text-slate-500 dark:text-slate-400">
                           <time dateTime={date}>{formatDate(date, language)}</time>
                         </dd>
+                        <dd className="text-slate-300 dark:text-slate-700">•</dd>
+                        <dd className="text-heading-600 dark:text-heading-400 font-medium">
+                          Archive
+                        </dd>
                       </dl>
-                      <div className="space-y-3">
+                      <div className="space-y-4">
                         <div>
-                          <div className="text-2xl leading-8 font-bold tracking-tight">
+                          <div className="text-2xl leading-8 font-bold tracking-tight text-slate-950 dark:text-white">
                             <Link
                               href={`/${locale}/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
+                              className="hover:text-primary-600 dark:hover:text-primary-400 transition"
                               aria-labelledby={title}
                             >
                               <h2>{title}</h2>
                             </Link>
                           </div>
-                          <ul className="flex flex-wrap">
+                          <ul className="mt-4 flex flex-wrap gap-2">
                             {tags.map((t) => (
-                              <li key={t} className="my-3">
+                              <li key={t}>
                                 <button
                                   onClick={createTagClickHandler(t)}
                                   className={`${
                                     useTagStore.getState().selectedTag === t
-                                      ? 'text-heading-500 dark:text-heading-400'
-                                      : 'text-primary-500 hover:text-primary-600 dark:text-primary-400 dark:hover:text-primary-500'
-                                  } mr-3 cursor-pointer text-sm font-medium uppercase`}
+                                      ? 'border-heading-200 bg-heading-50 text-heading-700 dark:border-heading-500/20 dark:bg-heading-500/10 dark:text-heading-300'
+                                      : 'text-primary-600 hover:border-primary-200 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/5'
+                                  } cursor-pointer rounded-full border px-3 py-2 text-xs font-semibold uppercase transition-colors`}
                                   aria-label={`View posts tagged ${t}`}
                                 >
                                   {`${t}`}
@@ -191,7 +202,7 @@ export default function ListLayoutWithTags({
                             ))}
                           </ul>
                         </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                        <div className="text-sm leading-7 text-slate-600 dark:text-slate-300">
                           {summary && summary.length > 149
                             ? `${summary.substring(0, 149)}...`
                             : summary}

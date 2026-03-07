@@ -21,25 +21,30 @@ const Header = (): JSX.Element => {
   const pathname = usePathname()
 
   return (
-    <header>
-      <div className="flex items-center justify-between py-10">
-        <div>
+    <header className="sticky top-0 z-40 pt-4">
+      <div className="surface-card flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <div className="min-w-0 flex-1">
           <Link href={`/${locale}/`} aria-label={siteMetadata.headerTitle}>
-            <div className="flex items-center justify-between">
-              <div className="mr-3">
+            <div className="flex items-center gap-4">
+              <div className="from-primary-500/20 via-heading-500/15 to-primary-500/5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ring-1 ring-slate-200/70 dark:ring-white/10">
                 <Logo />
               </div>
-              {typeof siteMetadata.headerTitle === 'string' ? (
-                <div className="hidden h-6 text-2xl font-semibold sm:block">
-                  {siteMetadata.headerTitle}
-                </div>
-              ) : (
-                siteMetadata.headerTitle
-              )}
+              <div className="min-w-0">
+                {typeof siteMetadata.headerTitle === 'string' ? (
+                  <div className="truncate text-lg font-semibold tracking-tight text-slate-950 sm:text-xl dark:text-white">
+                    {siteMetadata.headerTitle}
+                  </div>
+                ) : (
+                  siteMetadata.headerTitle
+                )}
+                <p className="hidden text-sm text-slate-500 md:block dark:text-slate-400">
+                  개발 노트 · 아키텍처 · 실험 기록 · 수익화 인사이트
+                </p>
+              </div>
             </div>
           </Link>
         </div>
-        <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
+        <div className="hidden items-center gap-2 xl:flex">
           {headerNavLinks
             .filter((link) => {
               return link.href !== '/'
@@ -50,28 +55,30 @@ const Header = (): JSX.Element => {
                 <Link
                   key={link.title}
                   href={`/${locale}${link.href}`}
-                  className="flex transform-gpu items-center space-x-1 transition-transform duration-300"
+                  className="flex transform-gpu items-center transition-transform duration-300"
                 >
                   <div
-                    className={`hidden font-medium ${
+                    className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                       isSelected
-                        ? 'text-heading-500'
-                        : 'text-gray-500 hover:text-gray-900 dark:hover:text-gray-100'
-                    } relative rounded-md px-2 py-1 font-medium transition-colors sm:block`}
+                        ? 'text-slate-950 dark:text-white'
+                        : 'text-slate-500 hover:text-slate-950 dark:text-slate-400 dark:hover:text-white'
+                    }`}
                   >
                     <span className="relative z-10">{t(`${link.title.toLowerCase()}`)}</span>
                     {isSelected ? (
                       <motion.span
                         layoutId="tab"
                         transition={{ type: 'spring', duration: 0.4 }}
-                        className="absolute inset-0 z-0 rounded-md bg-gray-100 dark:bg-gray-600"
+                        className="absolute inset-0 z-0 rounded-full bg-slate-950/6 ring-1 ring-slate-200/80 dark:bg-white/8 dark:ring-white/10"
                       />
                     ) : null}
                   </div>
                 </Link>
               )
             })}
-          <AuthorsMenu className="hidden sm:block" />
+          <AuthorsMenu className="hidden xl:block" />
+        </div>
+        <div className="flex items-center gap-1 sm:gap-2">
           <SearchButton />
           <ThemeSwitch />
           <LangSwitch />

@@ -80,9 +80,12 @@ const ThemeSwitch = (): React.JSX.Element | null => {
   if (!mounted) return null
 
   return (
-    <div ref={menubarRef} className="mr-5">
+    <div ref={menubarRef} className="mr-1">
       <Menu as="div" className="relative mt-1 inline-block text-left">
-        <MenuButton aria-label={t('theme')}>
+        <MenuButton
+          aria-label={t('theme')}
+          className="hover:border-primary-300 dark:hover:border-primary-500/40 rounded-full border border-slate-200/80 bg-white/80 p-2 backdrop-blur transition dark:border-white/10 dark:bg-white/5"
+        >
           <DarkModeSwitch
             checked={darkModeChecked}
             onChange={handleDarkModeChange}
@@ -100,7 +103,7 @@ const ThemeSwitch = (): React.JSX.Element | null => {
           leaveFrom="opacity-100 scale-100 translate-y-0"
           leaveTo="opacity-0 scale-95 translate-y-[10px]"
         >
-          <MenuItems className="ring-opacity-5 absolute right-0 z-50 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black focus:outline-none dark:bg-gray-800">
+          <MenuItems className="absolute right-0 z-50 mt-3 w-40 origin-top-right overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 p-2 shadow-2xl backdrop-blur-xl focus:outline-none dark:border-white/10 dark:bg-slate-900/90">
             <RadioGroup value={theme} onChange={handleThemeChange}>
               <div className="p-1">
                 <Radio value={Theme.LIGHT}>
@@ -110,9 +113,9 @@ const ThemeSwitch = (): React.JSX.Element | null => {
                         onClick={handleLightTheme}
                         className={`${
                           focus
-                            ? 'bg-gray-100 dark:bg-gray-600'
-                            : 'hover:bg-gray-100 dark:hover:bg-gray-600'
-                        } group hover:text-primary-500 dark:hover:text-primary-500 flex w-full cursor-pointer items-center rounded-md px-2 py-2 text-sm`}
+                            ? 'bg-slate-100 dark:bg-white/10'
+                            : 'hover:bg-slate-100 dark:hover:bg-white/10'
+                        } group hover:text-primary-500 dark:hover:text-primary-400 flex w-full cursor-pointer items-center rounded-xl px-3 py-2.5 text-sm text-slate-700 dark:text-slate-200`}
                       >
                         <Sun className="h-6 w-6" />
                         <span className="ml-2">{t('light')}</span>
@@ -127,9 +130,9 @@ const ThemeSwitch = (): React.JSX.Element | null => {
                         onClick={handleDarkTheme}
                         className={`${
                           focus
-                            ? 'bg-gray-100 dark:bg-gray-600'
-                            : 'hover:bg-gray-100 dark:hover:bg-gray-600'
-                        } group hover:text-primary-500 dark:hover:text-primary-500 flex w-full cursor-pointer items-center rounded-md px-2 py-2 text-sm`}
+                            ? 'bg-slate-100 dark:bg-white/10'
+                            : 'hover:bg-slate-100 dark:hover:bg-white/10'
+                        } group hover:text-primary-500 dark:hover:text-primary-400 flex w-full cursor-pointer items-center rounded-xl px-3 py-2.5 text-sm text-slate-700 dark:text-slate-200`}
                       >
                         <Moon className="h-6 w-6" />
                         <span className="ml-2">{t('dark')}</span>
@@ -144,9 +147,9 @@ const ThemeSwitch = (): React.JSX.Element | null => {
                         onClick={handleSystemTheme}
                         className={`${
                           focus
-                            ? 'bg-gray-100 dark:bg-gray-600'
-                            : 'hover:bg-gray-100 dark:hover:bg-gray-600'
-                        } group hover:text-primary-500 dark:hover:text-primary-500 flex w-full cursor-pointer items-center rounded-md px-2 py-2 text-sm`}
+                            ? 'bg-slate-100 dark:bg-white/10'
+                            : 'hover:bg-slate-100 dark:hover:bg-white/10'
+                        } group hover:text-primary-500 dark:hover:text-primary-400 flex w-full cursor-pointer items-center rounded-xl px-3 py-2.5 text-sm text-slate-700 dark:text-slate-200`}
                       >
                         <Monitor className="h-6 w-6" />
                         <span className="ml-2">{t('system')}</span>

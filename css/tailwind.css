@@ -11,29 +11,29 @@
 
   --font-family-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary-50: #fdf2f8;
-  --color-primary-100: #fce7f3;
-  --color-primary-200: #fbcfe8;
-  --color-primary-300: #f9a8d4;
-  --color-primary-400: #f472b6;
-  --color-primary-500: #ec4899;
-  --color-primary-600: #db2777;
-  --color-primary-700: #be185d;
-  --color-primary-800: #9d174d;
-  --color-primary-900: #831843;
-  --color-primary-950: #500724;
+  --color-primary-50: #eef8ff;
+  --color-primary-100: #d9f0ff;
+  --color-primary-200: #bce6ff;
+  --color-primary-300: #8fd8ff;
+  --color-primary-400: #56c2ff;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+  --color-primary-950: #082f49;
 
-  --color-heading-50: #eff6ff;
-  --color-heading-100: #dbeafe;
-  --color-heading-200: #bfdbfe;
-  --color-heading-300: #93c5fd;
-  --color-heading-400: #60a5fa;
-  --color-heading-500: #3b82f6;
-  --color-heading-600: #2563eb;
-  --color-heading-700: #1d4ed8;
-  --color-heading-800: #1e40af;
-  --color-heading-900: #1e3a8a;
-  --color-heading-950: #172554;
+  --color-heading-50: #f5f3ff;
+  --color-heading-100: #ede9fe;
+  --color-heading-200: #ddd6fe;
+  --color-heading-300: #c4b5fd;
+  --color-heading-400: #a78bfa;
+  --color-heading-500: #8b5cf6;
+  --color-heading-600: #7c3aed;
+  --color-heading-700: #6d28d9;
+  --color-heading-800: #5b21b6;
+  --color-heading-900: #4c1d95;
+  --color-heading-950: #2e1065;
 
   --color-gray-50: #f9fafb;
   --color-gray-100: #f3f4f6;
@@ -70,6 +70,30 @@
     border-color: var(--color-gray-200, currentColor);
   }
 
+  html {
+    background-color: #f8fafc;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at top, rgba(14, 165, 233, 0.08), transparent 24%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 1));
+    color: var(--color-gray-950);
+    min-height: 100vh;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(circle at top, rgba(56, 189, 248, 0.1), transparent 22%),
+      linear-gradient(180deg, rgba(2, 6, 23, 0.96), rgba(2, 6, 23, 1));
+    color: #f8fafc;
+  }
+
+  ::selection {
+    background-color: rgba(14, 165, 233, 0.2);
+    color: var(--color-gray-950);
+  }
+
   a,
   button {
     outline-color: var(--color-primary-500);
@@ -84,7 +108,24 @@
 }
 
 @layer utilities {
+  .surface-card {
+    @apply rounded-3xl border border-white/60 bg-white/75 shadow-[0_20px_60px_-24px_rgba(15,23,42,0.32)] backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:shadow-[0_24px_80px_-32px_rgba(2,6,23,0.9)];
+  }
+
+  .surface-muted {
+    @apply rounded-2xl border border-slate-200/70 bg-slate-50/85 backdrop-blur dark:border-slate-800 dark:bg-slate-900/70;
+  }
+
+  .grid-pattern {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
   .prose {
+    color: var(--color-gray-700);
+
     & a {
       color: var(--color-primary-500);
 
@@ -100,18 +141,36 @@
     & :where(h1, h2) {
       font-weight: 700;
       letter-spacing: var(--tracking-tight);
+      color: var(--color-gray-950);
     }
 
     & h3 {
       font-weight: 600;
+      color: var(--color-gray-900);
     }
 
     & :where(code):not(pre code) {
-      color: var(--color-indigo-500);
+      color: var(--color-heading-600);
+      background-color: rgba(148, 163, 184, 0.12);
+      border-radius: 0.5rem;
+      padding: 0.2rem 0.45rem;
+    }
+
+    & pre {
+      border-radius: 1.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 20px 60px -30px rgba(15, 23, 42, 0.5);
+    }
+
+    & blockquote {
+      border-left-color: rgba(14, 165, 233, 0.5);
+      color: var(--color-gray-600);
     }
   }
 
   .prose-invert {
+    color: rgb(203 213 225);
+
     & a {
       color: var(--color-primary-500);
 
@@ -126,6 +185,15 @@
 
     & :where(h1, h2, h3, h4, h5, h6) {
       color: var(--color-gray-100);
+    }
+
+    & :where(code):not(pre code) {
+      color: #c4b5fd;
+      background-color: rgba(148, 163, 184, 0.14);
+    }
+
+    & blockquote {
+      color: rgb(148 163 184);
     }
   }
 }

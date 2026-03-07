@@ -99,19 +99,20 @@ export default async function RootLayout({
       <link rel="manifest" href="/static/favicons/site.webmanifest" />
       <link rel="mask-icon" href="/static/favicons/safari-pinned-tab.svg" color="#5bbad5" />
       <meta name="msapplication-TileColor" content="#000000" />
-      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
-      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
+      <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8fafc" />
+      <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#020617" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-slate-950 dark:text-white">
         <TwSizeIndicator />
         <ThemeProvider>
           <ThemeScript />
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <SectionContainer>
-            <div className="flex h-screen flex-col justify-between font-sans">
+            <div className="relative flex min-h-screen flex-col justify-between overflow-hidden font-sans">
+              <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem] bg-[radial-gradient(circle_at_top,_rgba(14,165,233,0.16),_transparent_36%),radial-gradient(circle_at_20%_20%,_rgba(168,85,247,0.14),_transparent_28%),linear-gradient(180deg,_rgba(248,250,252,0.96),_rgba(248,250,252,0))] dark:bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),_transparent_32%),radial-gradient(circle_at_20%_20%,_rgba(129,140,248,0.16),_transparent_24%),linear-gradient(180deg,_rgba(2,6,23,0.98),_rgba(2,6,23,0))]" />
               <SearchProvider>
                 <Header />
-                <main className="mb-auto">{children}</main>
+                <main className="mb-auto pb-16 lg:pb-24">{children}</main>
               </SearchProvider>
               <Footer />
             </div>
