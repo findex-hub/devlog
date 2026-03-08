@@ -22,11 +22,11 @@ const Header = (): JSX.Element => {
 
   return (
     <header className="sticky top-0 z-40 pt-4">
-      <div className="surface-card flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="surface-card flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <div className="min-w-0 flex-1">
           <Link href={`/${locale}/`} aria-label={siteMetadata.headerTitle}>
             <div className="flex items-center gap-4">
-              <div className="from-primary-500/20 via-heading-500/15 to-primary-500/5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ring-1 ring-slate-200/70 dark:ring-white/10">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200/80 bg-slate-50 dark:border-white/10 dark:bg-white/[0.04]">
                 <Logo />
               </div>
               <div className="min-w-0">
@@ -38,7 +38,7 @@ const Header = (): JSX.Element => {
                   siteMetadata.headerTitle
                 )}
                 <p className="hidden text-sm text-slate-500 md:block dark:text-slate-400">
-                  개발 노트 · 아키텍처 · 실험 기록 · 수익화 인사이트
+                  Dev Log: Coding & Troubleshooting
                 </p>
               </div>
             </div>
@@ -69,7 +69,7 @@ const Header = (): JSX.Element => {
                       <motion.span
                         layoutId="tab"
                         transition={{ type: 'spring', duration: 0.4 }}
-                        className="absolute inset-0 z-0 rounded-full bg-slate-950/6 ring-1 ring-slate-200/80 dark:bg-white/8 dark:ring-white/10"
+                        className="absolute inset-0 z-0 rounded-full bg-slate-100 ring-1 ring-slate-200/80 dark:bg-white/[0.06] dark:ring-white/10"
                       />
                     ) : null}
                   </div>

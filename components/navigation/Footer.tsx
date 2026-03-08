@@ -30,18 +30,17 @@ export default function Footer(): JSX.Element {
   return (
     <>
       <footer className="pb-10">
-        <div className="surface-card mt-16 overflow-hidden px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,0.7fr)] lg:items-end">
+        <div className="mt-16 border-t border-slate-200/70 pt-10 dark:border-white/10">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(18rem,0.7fr)] lg:items-start">
             <div>
-              <p className="text-primary-600 dark:text-primary-400 text-xs font-semibold tracking-[0.28em] uppercase">
-                Build in public, with intent
+              <p className="text-xs font-semibold tracking-[0.28em] text-slate-400 uppercase">
+                Dev Log: Coding & Troubleshooting
               </p>
               <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl dark:text-white">
-                개발 기록을 브랜드와 기회로 연결하는 개인 플랫폼
+                지식과 경험을 쌓는 개발 노트
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base dark:text-slate-300">
-                아키텍처 의사결정, 시행착오, 실험 결과를 쌓아 신뢰 가능한 포트폴리오와 수익화
-                기반으로 연결합니다.
+                Documenting solutions and dev experiences.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 {siteMetadata.formspree === false ? (
@@ -61,7 +60,7 @@ export default function Footer(): JSX.Element {
                 )}
                 <Link
                   href={`/${locale}/blog`}
-                  className="hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-500/40 dark:hover:text-primary-300 inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-5 py-3 text-sm font-semibold text-slate-900 transition dark:border-white/10 dark:bg-white/5 dark:text-white"
+                  className="inline-flex items-center rounded-full border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-slate-300 hover:bg-slate-50 dark:border-white/10 dark:text-white dark:hover:bg-white/5"
                 >
                   최신 글 보기
                 </Link>

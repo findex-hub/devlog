@@ -5,32 +5,28 @@ language: ko
 tags: ['next-js', 'math', 'ols']
 authors: ['tailsazimuth']
 draft: false
-summary: How to derive the OLS Estimator with matrix notation and a tour of math typesetting using markdown with the help of KaTeX.
+summary: 행렬 표기법으로 OLS 추정량을 유도하는 방법과 KaTeX를 활용한 수식 타이핑 예시를 소개합니다.
 ---
 
 # Introduction
 
-Parsing and display of math equations is included in this blog template. Parsing of math is enabled by `remark-math` and `rehype-katex`.
-KaTeX and its associated font is included in `_document.js` so feel free to use it on any page.
-[^footnote]
+이 블로그 템플릿은 수식 파싱과 표시를 지원합니다. `remark-math`와 `rehype-katex`로 수식 파싱을 활성화했고, KaTeX와 관련 폰트는 `_document.js`에 포함되어 있어 어떤 페이지에서도 사용할 수 있습니다.[^footnote]
 
-[^footnote]: For the full list of supported TeX functions, check out the [KaTeX documentation](https://katex.org/docs/supported.html)
+[^footnote]: 지원되는 TeX 함수 목록은 [KaTeX 문서](https://katex.org/docs/supported.html)에서 확인하세요.
 
-Inline math symbols can be included by enclosing the term between the `$` symbol.
+인라인 수식은 `$`로 감싸서 표시할 수 있고, 블록 수식은 `$$`로 감쌉니다.
 
-Math code blocks are denoted by `$$`.
+달러 기호를 수식이 아닌 텍스트로 쓰려면 `\$`로 이스케이프하거나 HTML 엔티티 `&dollar;`를 사용하세요.[^2]
 
-If you intend to use the `$` sign instead of math, you can escape it (`\$`), or specify the HTML entity (`&dollar;`) [^2]
+인라인 각주와 수동 번호 각주도 지원됩니다. 위 링크를 눌러 동작을 확인할 수 있습니다.
 
-Inline or manually enumerated footnotes are also supported. Click on the links above to see them in action.
+[^2]: \$10 과 &dollar;20.
 
-[^2]: \$10 and &dollar;20.
+# OLS 추정량 유도
 
-# Deriving the OLS Estimator
+행렬 표기법에서 관측치 수를 $n$, 설명 변수(회귀자) 수를 $k$라고 하겠습니다.
 
-Using matrix notation, let $n$ denote the number of observations and $k$ denote the number of regressors.
-
-The vector of outcome variables $\mathbf{Y}$ is a $n \times 1$ matrix,
+종속 변수 벡터 $\mathbf{Y}$는 $n \times 1$ 행렬입니다.
 
 ```tex
 \mathbf{Y} = \left[\begin{array}

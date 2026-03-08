@@ -23,30 +23,31 @@ interface PostListProps {
 
 const PostList: React.FC<PostListProps> = ({ posts, locale, t, maxDisplay }) => {
   return (
-    <ul className="grid gap-6 py-4 lg:grid-cols-2">
-      {!posts.length && <li>{t('noposts')}</li>}
+    <ul className="grid gap-6 lg:grid-cols-2">
+      {!posts.length && (
+        <li className="surface-card px-6 py-10 text-sm text-slate-500 dark:text-slate-400">{t('noposts')}</li>
+      )}
       {posts.slice(0, maxDisplay).map((post) => {
         const { slug, date, title, summary, tags } = post
         return (
           <li key={slug} className="h-full">
-            <article className="surface-card flex h-full flex-col justify-between p-6 sm:p-7">
-              <div className="space-y-5">
-                <dl className="flex items-center gap-3 text-sm">
+            <article className="surface-card group relative flex h-full flex-col justify-between overflow-hidden p-6 sm:p-7">
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent opacity-0 transition group-hover:opacity-100" />
+              <div className="space-y-6">
+                <dl className="flex flex-wrap items-center gap-3 text-sm">
                   <dt className="sr-only">{t('pub')}</dt>
                   <dd className="font-medium text-slate-500 dark:text-slate-400">
                     <time dateTime={date}>{formatDate(date, locale)}</time>
                   </dd>
-                  <dd className="text-slate-300 dark:text-slate-700">•</dd>
-                  <dd className="text-primary-600 dark:text-primary-400 font-medium">
-                    Featured Note
-                  </dd>
+                  <dd className="text-slate-300 dark:text-slate-700">·</dd>
+                  <dd className="text-xs font-semibold tracking-[0.2em] text-primary-600 uppercase dark:text-primary-400">{t('postCardEyebrow')}</dd>
                 </dl>
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <div>
-                    <h2 className="text-2xl leading-tight font-bold tracking-tight text-slate-950 dark:text-white">
+                    <h2 className="text-2xl leading-tight font-bold tracking-tight text-slate-950 transition group-hover:text-primary-600 dark:text-white dark:group-hover:text-primary-400">
                       <Link
                         href={`/${locale}/blog/${slug}`}
-                        className="hover:text-primary-600 dark:hover:text-primary-400 transition"
+                        className="transition"
                       >
                         {title}
                       </Link>
@@ -64,10 +65,11 @@ const PostList: React.FC<PostListProps> = ({ posts, locale, t, maxDisplay }) => 
                   </div>
                 </div>
               </div>
-              <div className="mt-8 text-base leading-6 font-medium">
+              <div className="mt-8 flex items-center justify-between gap-4 border-t border-slate-200/70 pt-6 text-base leading-6 font-medium dark:border-white/10">
+                <span className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">{t('postCardCtaLabel')}</span>
                 <Link
                   href={`/${locale}/blog/${slug}`}
-                  className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 inline-flex items-center gap-2 transition hover:gap-3"
+                  className="inline-flex items-center gap-2 text-primary-600 transition hover:gap-3 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
                   aria-label={`${t('more')}"${title}"`}
                 >
                   <span>{t('more')}</span>

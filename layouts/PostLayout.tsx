@@ -65,9 +65,8 @@ export default async function PostLayout({
       <Sidetoc toc={tableOfContents} />
       <article>
         <div className="space-y-8">
-          <header className="surface-card relative overflow-hidden px-6 py-8 text-center sm:px-8 sm:py-10 lg:px-12 lg:py-14">
-            <div className="from-primary-500/15 via-heading-500/10 absolute inset-x-0 top-0 h-28 bg-gradient-to-r to-transparent" />
-            <div className="relative space-y-4">
+          <header className="surface-card px-6 py-8 text-center sm:px-8 sm:py-10 lg:px-12 lg:py-14">
+            <div className="space-y-4">
               <dl className="space-y-6">
                 <div>
                   <dt className="sr-only">{t('pub')}</dt>
@@ -89,7 +88,7 @@ export default async function PostLayout({
             </div>
           </header>
           <div className="grid-rows-[auto_1fr] gap-8 pb-8 xl:grid xl:grid-cols-[minmax(16rem,18rem)_minmax(0,1fr)] xl:gap-x-8">
-            <dl className="surface-card h-fit px-5 py-6 xl:sticky xl:top-28">
+            <dl className="surface-muted h-fit px-5 py-6 xl:sticky xl:top-28">
               <dt className="sr-only">{t('authors')}</dt>
               <dd>
                 <p className="text-xs font-semibold tracking-[0.24em] text-slate-400 uppercase">
@@ -179,11 +178,11 @@ export default async function PostLayout({
               </div>
             </div>
             <footer>
-              <div className="surface-card text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2">
+              <div className="surface-muted text-sm leading-5 font-medium xl:col-start-1 xl:row-start-2">
                 {next || prev ? (
                   <div className="flex flex-col gap-4 p-5 xl:space-y-4">
                     {prev && prev.slug ? (
-                      <div className="rounded-2xl border border-slate-200/80 p-4 dark:border-white/10">
+                      <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 dark:border-white/10 dark:bg-white/[0.03]">
                         <p className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           {t('preva')}
                         </p>
@@ -193,7 +192,7 @@ export default async function PostLayout({
                       </div>
                     ) : null}
                     {next && next.slug ? (
-                      <div className="rounded-2xl border border-slate-200/80 p-4 dark:border-white/10">
+                      <div className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 dark:border-white/10 dark:bg-white/[0.03]">
                         <p className="text-xs tracking-wide text-gray-500 uppercase dark:text-gray-400">
                           {t('nexta')}
                         </p>

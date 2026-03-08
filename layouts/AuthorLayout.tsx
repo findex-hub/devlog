@@ -21,34 +21,41 @@ export default async function AuthorLayout({
   const { t } = await createTranslation(locale, 'about')
 
   return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-        <h1 className="text-heading-400 dark:text-heading-400 text-3xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+    <div className="space-y-10 pb-8">
+      <div className="space-y-3 pt-6">
+        <p className="text-xs font-semibold tracking-[0.24em] text-slate-400 uppercase">About</p>
+        <h1 className="text-3xl leading-tight font-black tracking-tight text-slate-950 sm:text-4xl md:text-5xl dark:text-white">
           {t('about')}
         </h1>
       </div>
-      <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:space-y-0 xl:gap-x-8">
-        <div className="flex flex-col items-center space-x-2 pt-8">
-          {avatar ? (
-            <Image
-              src={avatar}
-              alt="avatar"
-              title="avatar"
-              width={192}
-              height={192}
-              className="h-48 w-48 rounded-full"
-            />
-          ) : null}
-          <h2 className="pt-4 pb-2 text-2xl leading-8 font-bold tracking-tight">{name}</h2>
-          <div className="text-gray-500 dark:text-gray-400">{occupation}</div>
-          <div className="text-gray-500 dark:text-gray-400">{company}</div>
-          <div className="flex space-x-3 pt-6">
-            <SocialIcon kind="github" href={github} />
-            <SocialIcon kind="linkedin" href={linkedin} />
-            <SocialIcon kind="x" href={twitter} />
+      <div className="grid gap-8 xl:grid-cols-[minmax(18rem,22rem)_minmax(0,1fr)] xl:items-start">
+        <aside className="surface-card px-6 py-7 sm:px-8">
+          <div className="flex flex-col items-center text-center">
+            {avatar ? (
+              <Image
+                src={avatar}
+                alt="avatar"
+                title="avatar"
+                width={192}
+                height={192}
+                className="h-40 w-40 rounded-full object-cover"
+              />
+            ) : null}
+            <h2 className="pt-5 text-2xl leading-8 font-bold tracking-tight text-slate-950 dark:text-white">
+              {name}
+            </h2>
+            <div className="mt-2 text-sm text-slate-500 dark:text-slate-400">{occupation}</div>
+            <div className="mt-1 text-sm text-slate-500 dark:text-slate-400">{company}</div>
+            <div className="mt-6 flex space-x-3">
+              <SocialIcon kind="github" href={github} />
+              <SocialIcon kind="linkedin" href={linkedin} />
+              <SocialIcon kind="x" href={twitter} />
+            </div>
           </div>
+        </aside>
+        <div className="surface-card px-6 py-8 sm:px-8 lg:px-10">
+          <div className="prose dark:prose-invert max-w-none pt-0 pb-0">{children}</div>
         </div>
-        <div className="prose dark:prose-invert max-w-none pt-8 pb-8 xl:col-span-2">{children}</div>
       </div>
     </div>
   )

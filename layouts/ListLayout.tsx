@@ -125,8 +125,9 @@ export default function ListLayoutWithTags({
   })
 
   return (
-    <div className="space-y-8">
-      <div className="pt-6 pb-2">
+    <div className="space-y-10">
+      <div className="space-y-3 pt-6 pb-2">
+        <p className="text-xs font-semibold tracking-[0.24em] text-slate-400 uppercase">Archive</p>
         <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-slate-950 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 dark:text-gray-100">
           {title}
         </h1>
@@ -135,14 +136,14 @@ export default function ListLayoutWithTags({
         </p>
       </div>
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
-        <div className="surface-card hidden max-h-screen max-w-[300px] min-w-[300px] flex-wrap overflow-auto p-5 lg:flex">
+        <div className="surface-muted hidden max-h-screen max-w-[300px] min-w-[300px] flex-wrap overflow-auto p-5 lg:flex">
           <div className="w-full">
             <p className="px-3 text-xs font-semibold tracking-[0.24em] text-slate-400 uppercase">
               Topics
             </p>
             <button
               onClick={handleClearTag}
-              className={`${useTagStore.getState().selectedTag === '' ? 'bg-heading-50 text-heading-700 dark:bg-heading-500/10 dark:text-heading-300' : 'text-gray-500 dark:text-gray-400'} mt-4 w-full cursor-pointer rounded-2xl px-3 py-3 text-left text-sm font-bold uppercase transition-colors hover:bg-slate-100 dark:hover:bg-white/5`}
+              className={`${useTagStore.getState().selectedTag === '' ? 'bg-white text-slate-950 ring-1 ring-slate-200/80 dark:bg-white/[0.08] dark:text-white dark:ring-white/10' : 'text-gray-500 dark:text-gray-400'} mt-4 w-full cursor-pointer rounded-2xl px-3 py-3 text-left text-sm font-bold uppercase transition-colors hover:bg-white dark:hover:bg-white/5`}
             >
               {t('all')}
             </button>
@@ -163,13 +164,13 @@ export default function ListLayoutWithTags({
                 return (
                   <motion.li variants={item} key={slug} className="py-3">
                     <article className="surface-card flex flex-col gap-5 p-6 sm:p-7">
-                      <dl className="flex items-center gap-3 text-sm">
+                      <dl className="flex flex-wrap items-center gap-3 text-sm">
                         <dt className="sr-only">{t('pub')}</dt>
                         <dd className="font-medium text-slate-500 dark:text-slate-400">
                           <time dateTime={date}>{formatDate(date, language)}</time>
                         </dd>
-                        <dd className="text-slate-300 dark:text-slate-700">•</dd>
-                        <dd className="text-heading-600 dark:text-heading-400 font-medium">
+                        <dd className="text-slate-300 dark:text-slate-700">·</dd>
+                        <dd className="text-xs font-semibold tracking-[0.2em] text-slate-400 uppercase">
                           Archive
                         </dd>
                       </dl>
@@ -178,7 +179,7 @@ export default function ListLayoutWithTags({
                           <div className="text-2xl leading-8 font-bold tracking-tight text-slate-950 dark:text-white">
                             <Link
                               href={`/${locale}/blog/${slug}`}
-                              className="hover:text-primary-600 dark:hover:text-primary-400 transition"
+                              className="transition hover:text-primary-600 dark:hover:text-primary-400"
                               aria-labelledby={title}
                             >
                               <h2>{title}</h2>
@@ -191,8 +192,8 @@ export default function ListLayoutWithTags({
                                   onClick={createTagClickHandler(t)}
                                   className={`${
                                     useTagStore.getState().selectedTag === t
-                                      ? 'border-heading-200 bg-heading-50 text-heading-700 dark:border-heading-500/20 dark:bg-heading-500/10 dark:text-heading-300'
-                                      : 'text-primary-600 hover:border-primary-200 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 border-slate-200 bg-white/70 dark:border-white/10 dark:bg-white/5'
+                                      ? 'border-slate-200 bg-slate-100 text-slate-900 dark:border-white/10 dark:bg-white/[0.08] dark:text-white'
+                                      : 'border-slate-200 bg-white/70 text-slate-600 hover:border-slate-300 hover:text-slate-900 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-300 dark:hover:text-white'
                                   } cursor-pointer rounded-full border px-3 py-2 text-xs font-semibold uppercase transition-colors`}
                                   aria-label={`View posts tagged ${t}`}
                                 >

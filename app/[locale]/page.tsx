@@ -1,4 +1,3 @@
-import FeaturedLayout from '@/layouts/FeaturedLayout'
 import HomeLayout from '@/layouts/HomeLayout'
 import { allBlogs } from 'contentlayer/generated'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
@@ -22,11 +21,6 @@ export default async function Page({ params }: PageProps): Promise<ReactElement>
   const hasFeaturedPosts = filteredPosts.filter((p) => p.featured === true)
 
   return (
-    <>
-      {hasFeaturedPosts.length > 0 && (
-        <FeaturedLayout posts={hasFeaturedPosts} params={{ locale }} />
-      )}
-      <HomeLayout posts={filteredPosts} params={{ locale }} />
-    </>
+    <HomeLayout posts={filteredPosts} featuredPosts={hasFeaturedPosts} params={{ locale }} />
   )
 }
