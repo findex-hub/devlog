@@ -96,37 +96,40 @@ export default async function PostLayout({
                   Author
                 </p>
                 <ul className="mt-5 flex flex-wrap justify-center gap-4 sm:space-x-12 xl:block xl:space-y-6 xl:space-x-0">
-                  {authorDetails.map((author) => (
-                    <li className="flex items-center space-x-3" key={author.name}>
-                      {author.avatar ? (
-                        <Link href={`/${locale}/about/${author.slug}`}>
-                          <Image
-                            src={author.avatar}
-                            width={38}
-                            height={38}
-                            alt="avatar"
-                            title="avatar"
-                            className="h-11 w-11 rounded-full"
-                          />
-                        </Link>
-                      ) : null}
-                      <dl className="text-sm leading-5 font-medium whitespace-nowrap">
-                        <dt className="sr-only">{t('name')}</dt>
-                        <dd className="text-slate-900 dark:text-gray-100">{author.name}</dd>
-                        <dt className="sr-only">Twitter</dt>
-                        <dd>
-                          {author.twitter ? (
-                            <Link
-                              href={author.twitter}
-                              className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                            >
-                              {author.twitter.replace('https://twitter.com/', '@')}
-                            </Link>
-                          ) : null}
-                        </dd>
-                      </dl>
-                    </li>
-                  ))}
+                  {authorDetails.map((author, index) => {
+                    const authorKey = author.slug || author.name || `author-${index}`
+                    return (
+                      <li className="flex items-center space-x-3" key={authorKey}>
+                        {author.avatar ? (
+                          <Link href={`/${locale}/about/${author.slug}`}>
+                            <Image
+                              src={author.avatar}
+                              width={38}
+                              height={38}
+                              alt="avatar"
+                              title="avatar"
+                              className="h-11 w-11 rounded-full"
+                            />
+                          </Link>
+                        ) : null}
+                        <dl className="text-sm leading-5 font-medium whitespace-nowrap">
+                          <dt className="sr-only">{t('name')}</dt>
+                          <dd className="text-slate-900 dark:text-gray-100">{author.name}</dd>
+                          <dt className="sr-only">Twitter</dt>
+                          <dd>
+                            {author.twitter ? (
+                              <Link
+                                href={author.twitter}
+                                className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                              >
+                                {author.twitter.replace('https://twitter.com/', '@')}
+                              </Link>
+                            ) : null}
+                          </dd>
+                        </dl>
+                      </li>
+                    )
+                  })}
                 </ul>
               </dd>
             </dl>
