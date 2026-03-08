@@ -8,7 +8,7 @@ import {
   RadioGroup,
   Transition,
 } from '@headlessui/react'
-import { locales, type LocaleTypes } from 'app/[locale]/i18n/settings'
+import { enabledLocales, locales, type LocaleTypes } from 'app/[locale]/i18n/settings'
 import { useParams, usePathname, useRouter } from 'next/navigation'
 import { useCallback, useMemo, useRef, useState, type JSX } from 'react'
 import { useOuterClick } from '../util/useOuterClick'
@@ -27,7 +27,7 @@ const LangSwitch = (): JSX.Element => {
   const handleLocaleChange = useCallback(
     (newLocale: string): string => {
       const segments = pathname.split('/')
-      const localeIndex = segments.findIndex((segment) => locales.includes(segment as LocaleTypes))
+      const localeIndex = segments.findIndex((segment) => locales.includes(segment))
       if (localeIndex !== -1) {
         segments[localeIndex] = newLocale
       } else {
@@ -102,7 +102,7 @@ const LangSwitch = (): JSX.Element => {
                     role="none"
                     style={{ listStyle: 'none', margin: 0, padding: 0 }}
                   >
-                    {locales.map((newLocale: string) => (
+                    {enabledLocales.map((newLocale: string) => (
                       <Radio key={newLocale} value={newLocale}>
                         <MenuItem>
                           {({ focus }) => (

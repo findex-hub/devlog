@@ -1,0 +1,9 @@
+{
+  "mail": "이메일 주소",
+  "title": "뉴스레터 구독",
+  "messageError": "이메일 주소가 올바르지 않거나 이미 구독 중입니다.",
+  "placeholderSuccess": "구독 완료! 🎉",
+  "placeholderDefault": "이메일을 입력하세요",
+  "buttonSuccess": "감사합니다!",
+  "buttonDefault": "구독하기"
+}

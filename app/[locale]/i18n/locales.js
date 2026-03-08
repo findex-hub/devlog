@@ -1,4 +1,6 @@
-const fallbackLng = 'en'
-const secondLng = 'fr'
+const fallbackLng = 'ko'
+const secondLng = 'en'
+const additionalLngs = ['fr']
+const enabledLngs = [fallbackLng]
 
-module.exports = { fallbackLng, secondLng }
+module.exports = { fallbackLng, secondLng, additionalLngs, enabledLngs }
